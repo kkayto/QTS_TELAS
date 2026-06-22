@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repre</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="fundo-pagina">
+
+        <div class="frame-celular">
+
+            <div class="notificacoes-ilustrativo">
+                <span class="horario">5:67</span>
+                <div class="carga-celular">
+                    <i class="fa-solid fa-battery-three-quarters"></i>
+                </div>
+            </div>
+            <header>
+                <div>
+                    <h2 class="sub-text">Olá, User!</h2>
+                    <div class="sub-sub-text"> Turma do 3° DS</div>
+                </div>
+
+                <div class="sininho"><i class="fa-regular fa-bell" style="color: #584391; cursor: pointer;"></i>
+
+
+                </div>
+            </header>
+            <div class="content">
+                <section class="resumo-section">
+                    <p class="resumo-title">Resumo do dia</p>
+                    <div class="resumo-scroll-wrap" id="resumoScroll">
+                        <div class="resumo-inner">
+                            <div class="resumo-card verde">
+                                <span class="resumo-card-num">10</span>
+                                <span class="resumo-card-label">Atividades concluídas</span>
+                            </div>
+                            <div class="resumo-card amarelo">
+                                <span class="resumo-card-num">4</span>
+                                <span class="resumo-card-label">Atividades pendentes</span>
+                            </div>
+                            <div class="resumo-card azul">
+                                <span class="resumo-card-num">2</span>
+                                <span class="resumo-card-label">Atividades para hoje</span>
+                            </div>
+                            <div class="resumo-card vermei">
+                                <span class="resumo-card-num">0</span>
+                                <span class="resumo-card-label">Atividades atrasadas</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <div class="wrapper-atividades">
+                    <h2 class="title-atividades">Atividades</h2>
+
+                    <div class="cards-container" id="cards-container">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer">
+                <a href="home.html" class="footer-item">
+                    <i class="fa-solid fa-house" style="color: #584391;"></i>
+                    <span class="a-text">Início</span>
+                </a>
+                <a href="atividades.html" class="footer-item">
+                    <i class="fa-solid fa-book" style="color: #584391;"></i>
+                    <span class="a-text">Atividades</span>
+                </a>
+                <a href="dashboard.html" class="footer-item">
+                    <i class="fa-solid fa-chart-line" style="color: #584391;"></i>
+                    <span class="a-text">Desempenho</span>
+                </a>
+                <div class="footer-item submenu-wrapper">
+                    <button class="footer-toggle"
+                        onclick="document.querySelector('.submenu-mais').classList.toggle('aberto')">
+                        <i class="fa-solid fa-bars" style="color: #584391;"></i>
+                        <span class="a-text">Mais</span>
+                    </button>
+                    <div class="submenu-mais">
+                        <div class="arrow"></div>
+                        <a href="#"> <i class="fa-solid fa-gear" style="color: #584391;"></i>
+                            Configurações</a>
+                        <a href="calendario.html"> <i class="fa-solid fa-calendar" style="color: #584391;"></i>
+                            Calendário</a>
+                        <a href="#"> <i class="fa-solid fa-users" style="color: #584391;"></i> Gremio e
+                            Atletica</a>
+                    </div>
+                </div>
+            </div>
+            <div class="home-linha"></div>
+        </div>
+
+        <script src="home.js"></script>
+</body>
+
+</html>
