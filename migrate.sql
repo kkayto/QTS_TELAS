@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS repreDB;
+USE repreDB;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id         CHAR(36)        NOT NULL DEFAULT (UUID()) PRIMARY KEY,
+    nome       VARCHAR(120)    NOT NULL,
+    email      VARCHAR(255)    NOT NULL UNIQUE,
+    senha_hash VARCHAR(255)    NOT NULL,
+    criado_em  TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
