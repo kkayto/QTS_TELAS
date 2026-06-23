@@ -1,15 +1,15 @@
 /**
- * db.js — Repre Frontend
- * Faz chamadas à API Node.js que conecta ao TiDB.
- * Mantém a sessão do usuário logado no localStorage.
+ * db.js — Repre 
+   conecta ao TiDB.
+   usuário logado no localStorage.
  */
 
 const RepreDB = (() => {
 
-    const API_URL      = 'http://localhost:3000'; // troque pela URL do seu servidor em produção
+    const API_URL      = 'http://localhost:4000'; 
     const KEY_SESSAO   = 'repre_sessao';
 
-    /* ── cadastrar ──────────────────────────────────────── */
+    /* cadastrar  */
     async function cadastrar(nome, email, senha) {
         if (!nome || !email || !senha) {
             return { ok: false, erro: 'Preencha todos os campos.' };
@@ -35,7 +35,7 @@ const RepreDB = (() => {
         }
     }
 
-    /* ── login ──────────────────────────────────────────── */
+    /* login */
     async function login(email, senha) {
         if (!email || !senha) {
             return { ok: false, erro: 'Preencha todos os campos.' };
@@ -61,12 +61,12 @@ const RepreDB = (() => {
         }
     }
 
-    /* ── logout ─────────────────────────────────────────── */
+    /* logout */
     function logout() {
         localStorage.removeItem(KEY_SESSAO);
     }
 
-    /* ── sessaoAtual ────────────────────────────────────── */
+    /* sessaoAtual */
     function sessaoAtual() {
         try {
             return JSON.parse(localStorage.getItem(KEY_SESSAO)) || null;
@@ -75,17 +75,17 @@ const RepreDB = (() => {
         }
     }
 
-    /* ── estaLogado ─────────────────────────────────────── */
+    /* estaLogado */
     function estaLogado() {
         return sessaoAtual() !== null;
     }
 
-    /* ── helpers privados ───────────────────────────────── */
+    /* helpers privados */
     function _salvarSessao(usuario) {
         localStorage.setItem(KEY_SESSAO, JSON.stringify(usuario));
     }
 
-    /* ── API pública ────────────────────────────────────── */
+    /* API pública*/
     return { cadastrar, login, logout, sessaoAtual, estaLogado };
 
 })();
