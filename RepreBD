@@ -1,0 +1,91 @@
+/**
+ * db.js — Repre Frontend
+ * Faz chamadas à API Node.js que conecta ao TiDB.
+ * Mantém a sessão do usuário logado no localStorage.
+ */
+
+const RepreDB = (() => {
+
+    const API_URL      = 'http://localhost:3000'; // troque pela URL do seu servidor em produção
+    const KEY_SESSAO   = 'repre_sessao';
+
+    /* ── cadastrar ──────────────────────────────────────── */
+    async function cadastrar(nome, email, senha) {
+        if (!nome || !email || !senha) {
+            return { ok: false, erro: 'Preencha todos os campos.' };
+        }
+
+        try {
+            const res  = await fetch(`${API_URL}/cadastro`, {
+                method:  'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body:    JSON.stringify({ nome, email, senha }),
+            });
+
+            const data = await res.json();
+
+            if (data.ok) {
+                _salvarSessao(data.usuario);
+            }
+
+            return data;
+
+        } catch {
+            return { ok: false, erro: 'Não foi possível conectar ao servidor.' };
+        }
+    }
+
+    /* ── login ──────────────────────────────────────────── */
+    async function login(email, senha) {
+        if (!email || !senha) {
+            return { ok: false, erro: 'Preencha todos os campos.' };
+        }
+
+        try {
+            const res  = await fetch(`${API_URL}/login`, {
+                method:  'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body:    JSON.stringify({ email, senha }),
+            });
+
+            const data = await res.json();
+
+            if (data.ok) {
+                _salvarSessao(data.usuario);
+            }
+
+            return data;
+
+        } catch {
+            return { ok: false, erro: 'Não foi possível conectar ao servidor.' };
+        }
+    }
+
+    /* ── logout ─────────────────────────────────────────── */
+    function logout() {
+        localStorage.removeItem(KEY_SESSAO);
+    }
+
+    /* ── sessaoAtual ────────────────────────────────────── */
+    function sessaoAtual() {
+        try {
+            return JSON.parse(localStorage.getItem(KEY_SESSAO)) || null;
+        } catch {
+            return null;
+        }
+    }
+
+    /* ── estaLogado ─────────────────────────────────────── */
+    function estaLogado() {
+        return sessaoAtual() !== null;
+    }
+
+    /* ── helpers privados ───────────────────────────────── */
+    function _salvarSessao(usuario) {
+        localStorage.setItem(KEY_SESSAO, JSON.stringify(usuario));
+    }
+
+    /* ── API pública ────────────────────────────────────── */
+    return { cadastrar, login, logout, sessaoAtual, estaLogado };
+
+})();
