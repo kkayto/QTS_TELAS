@@ -26,15 +26,114 @@
             </div>
             <header>
                 <div>
-                    <h2 class="sub-text">Olá, User!</h2>
+                    <h2 class="sub-text">Olá, <span id="nomeUsuario">User</span>!</h2>
                     <div class="sub-sub-text"> Turma do 3° DS</div>
                 </div>
 
-                <div class="sininho"><i class="fa-regular fa-bell" style="color: #584391; cursor: pointer;"></i>
-
-
+                <div class="sininho">
+                    <i class="fa-regular fa-bell" style="color: #584391; cursor: pointer;"></i>
                 </div>
             </header>
+            <div class="content">
+                <section class="resumo-section">
+                    <p class="resumo-title">Resumo do dia</p>
+                    <div class="resumo-scroll-wrap" id="resumoScroll">
+                        <div class="resumo-inner">
+                            <div class="resumo-card verde">
+                                <span class="resumo-card-num">10</span>
+                                <span class="resumo-card-label">Atividades concluídas</span>
+                            </div>
+                            <div class="resumo-card amarelo">
+                                <span class="resumo-card-num">4</span>
+                                <span class="resumo-card-label">Atividades pendentes</span>
+                            </div>
+                            <div class="resumo-card azul">
+                                <span class="resumo-card-num">2</span>
+                                <span class="resumo-card-label">Atividades para hoje</span>
+                            </div>
+                            <div class="resumo-card vermei">
+                                <span class="resumo-card-num">0</span>
+                                <span class="resumo-card-label">Atividades atrasadas</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <div class="wrapper-atividades">
+                    <h2 class="title-atividades">Atividades</h2>
+
+                    <div class="cards-container" id="cards-container">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer">
+                <a href="home.html" class="footer-item">
+                    <i class="fa-solid fa-house" style="color: #584391;"></i>
+                    <span class="a-text">Início</span>
+                </a>
+                <a href="atividades.html" class="footer-item">
+                    <i class="fa-solid fa-book" style="color: #584391;"></i>
+                    <span class="a-text">Atividades</span>
+                </a>
+                <a href="dashboard.html" class="footer-item">
+                    <i class="fa-solid fa-chart-line" style="color: #584391;"></i>
+                    <span class="a-text">Desempenho</span>
+                </a>
+                <div class="footer-item submenu-wrapper">
+                    <button class="footer-toggle"
+                        onclick="document.querySelector('.submenu-mais').classList.toggle('aberto')">
+                        <i class="fa-solid fa-bars" style="color: #584391;"></i>
+                        <span class="a-text">Mais</span>
+                    </button>
+                    <div class="submenu-mais">
+                        <div class="arrow"></div>
+                        <a href="#"> <i class="fa-solid fa-gear" style="color: #584391;"></i>
+                            Configurações</a>
+                        <a href="calendario.html"> <i class="fa-solid fa-calendar" style="color: #584391;"></i>
+                            Calendário</a>
+                        <a href="#"> <i class="fa-solid fa-users" style="color: #584391;"></i> Gremio e
+                            Atletica</a>
+                        <a href="index.html" id="btnLogout" style="color: #e24b4a;">
+                            <i class="fa-solid fa-right-from-bracket" style="color: #e24b4a;"></i>
+                            Sair
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="home-linha"></div>
+        </div>
+
+    </div>
+
+    <script src="db.js"></script>
+    <script src="home.js"></script>
+    <script>
+        // Redireciona para login se não estiver logado
+        if (!RepreDB.estaLogado()) {
+            window.location.href = 'login.html';
+        }
+
+        // Exibe nome do usuário logado
+        const sessao = RepreDB.sessaoAtual();
+        if (sessao) {
+            const primeiroNome = sessao.nome.split(' ')[0];
+            document.getElementById('nomeUsuario').textContent = primeiroNome;
+        }
+
+        // Logout
+        document.getElementById('btnLogout').addEventListener('click', (e) => {
+            e.preventDefault();
+            RepreDB.logout();
+            window.location.href = 'index.html';
+        });
+    </script>
+
+</body>
+
+</html>            </header>
             <div class="content">
                 <section class="resumo-section">
                     <p class="resumo-title">Resumo do dia</p>
